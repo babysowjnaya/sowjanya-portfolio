@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sowjanya's Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2c3e50;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        header .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: var(--shadow);
+            margin-bottom: 1rem;
+            transition: var(--transition);
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            background: rgba(255, 255, 255, 0.2);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        section {
+            padding: 3rem 0;
+            background: white;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        section:nth-child(even) {
+            background: var(--light);
+        }
+
+        h2 {
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .personal-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .info-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-card h3 i {
+            font-size: 1.2rem;
+        }
+
+        .education-item, .skill-item, .project-card {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .education-item:last-child, .skill-item:last-child, .project-card:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .education-item h3, .project-card h3 {
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .education-item p, .project-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        .date {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--light);
+            padding-bottom: 0.5rem;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-item i {
+            color: var(--primary);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+    
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 275px;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-content p {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+
+        .project-tag {
+            display: inline-block;
+            background: var(--light);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .youtube-card {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .youtube-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: var(--shadow);
+        }
+
+        .youtube-content h3 {
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .youtube-stats {
+            display: flex;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item .number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .stat-item .label {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Resume Section Styles */
+         
+        /*value Proportion*/
+        .value-proposition {
+            border-top-color: var(--accent-red);
+        }
+        
+        .skills-list, .value-list {
+            text-align: left;
+            padding-left: 1.5rem;
+            color: var(--text-color);
+        }
+        
+        .skills-list li, .value-list li {
+            margin-bottom: 0.8rem;
+            position: relative;
+        }
+        
+        .skills-list li:before, .value-list li:before {
+            content: "•";
+            color: var(--primary-color);
+            font-weight: bold;
+            display: inline-block; 
+            width: 1em;
+            margin-left: -1em;
+        }
+         /* Fresher Message Section */
+        .fresher-message {
+            display: flex;
+            margin-top: 10px;
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            align-items: center;
+        }
+        
+        .message-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-right: 2rem;
+            flex-shrink: 0;
+        }
+        
+        .message-content {
+            flex-grow: 1;
+        }
+        
+        .message-content h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .message-content ul {
+            padding-left: 1.5rem;
+            color: var(--text-color);
+        }
+        
+        .message-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+.resume-section {
+    padding: 4rem 0;
+    background-color: #f9f9f9;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #7f8c8d;
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+}
+
+.resume-highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.highlight-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    border-top: 4px solid #3498db;
+}
+
+.highlight-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.highlight-icon {
+    font-size: 2.5rem;
+    color: #3498db;
+    margin-bottom: 1rem;
+}
+
+.highlight-card h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.highlight-card p {
+    color: #7f8c8d;
+    line-height: 1.6;
+}
+
+.resume-download {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    position: relative;
+}
+
+.resume-preview {
+    position: relative;
+}
+
+.preview-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    padding: 2rem;
+    text-align: center;
+}
+
+.download-btn {
+    display: inline-block;
+    background: #3498db;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.3s ease;
+}
+
+.download-btn:hover {
+    background: #2980b9;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .resume-highlights {
+        grid-template-columns: 1fr;
+    }
+}
+
+        .contact-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-card i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background: var(--secondary);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .youtube-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .youtube-stats {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="./assets/3818c199-8faf-458e-8097-7c3ea4d59279.jpg" alt="Baby Sowjanya" class="profile-img">
+            <h1>BABY SOWJANYA YERRA</h1>
+            <p class="tagline"> Data Analyst</p>
+            <div class="social-links">
+                <a href="https://github.com/babysowjnaya" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/baby-sowjanya-yerra-a47068374/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:babysowjanya2005@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="about">
+            <h2>About Me</h2>
+            <div class="personal-info">
+                <div class="info-card">
+                    <h3><i class="fas fa-user"></i> Personal Details</h3>
+                    <p><strong>Name :</strong> Baby Sowjanya Yerra</p>
+                    <p><strong>Date of Birth :</strong> 15 March 2005</p>
+                    <p><strong>Location :</strong> Vizianagaram, Andhra Pradesh</p>
+                    <p><strong>Personal Statement :</strong> Although I come from a Computer Science background with a specialization in Artificial Intelligence and Machine Learning, my true passion lies in building innovative solutions that merge technology and empathy. I thrive on solving complex problems using AI, data, and full-stack development to create products that have real human impact. My journey has been fueled by curiosity, creativity, and the drive to design intelligent systems that make everyday processes smoother and smarter.</p>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-lightbulb"></i> Interests</h3>
+                    <ul>
+                        <li>Artificial Intelligence & Machine Learning</li>
+    
+                        <li>Fintech Innovation & Data-Driven Decision Making</li>
+
+                        <li>Frontend & Full-Stack Development</li>
+
+                        <li>Problem Solving & Analytical Thinking</li>
+
+                        <li>IoT & Automation Projects</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="education">
+            <h2>Education</h2>
+            <div class="education-item">
+                <h3>Bachelor of Technology in Artificial intelligence and Machine Learning</h3>
+                <p>Shri Vishnu Engineering College for Women, Bhimavaram</p>
+                <p class="date">2023 - 2026</p>
+                <p><strong>CGPA :</strong> 8.69</p>
+                <p>Throughout my B.Tech journey, I have built a strong foundation in AI and data-driven development, 
+                    mastering both theoretical concepts and practical applications through diverse projects in credit analysis,
+                     face recognition, and autonomous systems. My focus has been on using machine learning and automation to solve 
+                     real-world problems that blend empathy with technology — a philosophy that aligns closely with Riverline’s 
+                     AI-first vision for financial systems.</p>
+            </div>
+            <div class="education-item">
+                <h3>Diploma in Computer Science Engineering</h3>
+                <p>Govt Polytechnic College for Women, Srikakulam</p>
+                <p class="date">2020 - 2023</p>
+                <p><strong>Percentage :</strong> 86.5%</p>
+                <p>My diploma years helped me develop hands-on experience in core computing concepts and programming. I started
+                     exploring Python and embedded systems, building a mindset of innovation and continuous learning. This phase
+                      shaped my curiosity for AI and digital transformation, motivating me to pursue higher studies in machine 
+                      learning and real-world AI applications.</p>
+            </div>
+            <div class="education-item">
+                <h3>High School</h3>
+                <p>Fort City School, Vizianagaram</p>
+                <p class="date">2019 - 2020</p>
+                <p><strong>CGPA :</strong> 10</p>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Programming & AI</h3>
+                    <div class="skill-item"><i class="fas fa-check"></i> Python</div>
+                    <div class="skill-item"><i class="fas fa-check"></i> Java</div>
+                    <div class="skill-item"><i class="fas fa-check"></i> C</div>
+                    <div class="skill-item"><i class="fas fa-check"></i> Machine Learning</div>
+                    <div class="skill-item"><i class="fas fa-check"></i> Deep Learning</div>
+                    <div class="skill-item"><i class="fas fa-check"></i> Data Analytics</div>
+                    <div class="skill-item"><i class="fas fa-check"></i> TensorFlow</div>
+                    <div class="skill-item"><i class="fas fa-check"></i> Scikit-Learn</div>
+                </div>
+                <div class="skill-category">
+                    <h3>Web Development</h3>
+                    <div class="skill-item"><i class="fas fa-check"></i> HTML</div>
+                    <div class="skill-item"><i class="fas fa-check"></i> CSS</div>
+                    <div class="skill-item"><i class="fas fa-check"></i> JavaScript</div>
+                    <div class="skill-item"><i class="fas fa-check"></i> Flask</div>
+                    <div class="skill-item"><i class="fas fa-check"></i> React.js</div>
+                    <div class="skill-item"><i class="fas fa-check"></i> Streamlit</div>
+                    <div class="skill-item"><i class="fas fa-check"></i> Django</div>
+                </div>
+                <div class="skill-category">
+                    <h3>Databases & Tools</h3>
+                    <div class="skill-item"><i class="fas fa-check"></i> MySQL</div>
+                    <div class="skill-item"><i class="fas fa-check"></i> SQLite</div>
+                    <div class="skill-item"><i class="fas fa-check"></i> Git</div>
+                    <div class="skill-item"><i class="fas fa-check"></i> Linux</div>
+                    <div class="skill-item"><i class="fas fa-check"></i> VS Code</div>
+                </div>
+                <div class="skill-category">
+                    <h3>Simulation & Modeling:</h3>
+                    <div class="skill-item"><i class="fas fa-check"></i> MATLAB</div>
+                    <div class="skill-item"><i class="fas fa-check"></i> Simulink</div>
+                    <div class="skill-item"><i class="fas fa-check"></i> Raspberry Pi</div>
+                    <div class="skill-item"><i class="fas fa-check"></i> Arduino</div>
+                </div>
+                <div class="skill-category">
+                    <h3>Professional Strengths</h3>
+                    <div class="skill-item"><i class="fas fa-check"></i> Problem Solving</div>
+                    <div class="skill-item"><i class="fas fa-check"></i> Leadership</div>
+                    <div class="skill-item"><i class="fas fa-check"></i> Communication</div>
+                    <div class="skill-item"><i class="fas fa-check"></i> Adaptability</div>
+                    <div class="skill-item"><i class="fas fa-check"></i> Analytical Thinking</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="./assets/WhatsApp Image 2025-11-04 at 14.05.11.jpeg" alt="A-BAJA" class="project-img">
+                    <div class="project-content">
+                        <h3>A-BAJA 2024, 2025, by SAE INDIA</h3>
+                        <p>Designed and optimized an autonomous vehicle control system, achieving 95% object detection accuracy
+with YOLO v8 and reducing response time by 30%. Contributed to securing 2nd runner-up position at
+A-BAJA 2024.</p>
+                        <div>
+                            <span class="project-tag">YOLO v8</span>
+                            <span class="project-tag">Colab notebook</span>
+                            <span class="project-tag">Git</span>
+                            <span class="project-tag">MATLAB Simulation</span>
+                            <span class="project-tag">RoadRunner</span>
+                            <span class="project-tag">Raspberry Pi 4</span>
+                            <span class="project-tag">Arduino</span>
+                            <span class="project-tag">NVIDIA Jetson Nano</span>
+                            <span class="project-tag">Controllers</span>
+                        </div>
+                        <p><strong>Impact :</strong> Demonstrated strong teamwork, system optimization, and real-time AI deployment
+                             — key skills for Riverline’s intelligent automation goals.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="./assets/WhatsApp Image 2025-11-04 at 14.10.55.jpeg" alt="Credit Risk Analysis" class="project-img">
+                    <div class="project-content">
+                        <h3>Credit Risk Analysis</h3>
+                        <p>The project focuses on developing a Credit Risk Analysis System using machine learning techniques to
+predict the likelihood of loans. It aims to assist financial institutions in making data-driven, fair, and
+accurate lending decisions to minimize financial losses.</p>
+                        <div>
+                            <span class="project-tag">Random forest Ml model</span>
+                            <span class="project-tag">Flask</span>
+                            <span class="project-tag">Streamlit</span>
+                        </div>
+                        <p><strong>Impact :</strong> Improved financial decision accuracy through data-driven insights, directly 
+                            mirroring Riverline’s mission of using AI to build fair, efficient credit systems.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="./assets/faceRecognition.jpg" alt="Image Recognition System" class="project-img">
+                    <div class="project-content">
+                        <h3>Image Recognition System</h3>
+                        <p> A real-time image recognition project using React.js, Flask, OpenCV, and Socket.IO. It captures webcam 
+                            input, performs facial detection, and streams results instantly, showcasing seamless AI and web integration..</p>
+                        <div>
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">Flask</span>
+                            <span class="project-tag">Socket.IO</span>
+                            <span class="project-tag">TensorFlow</span>
+                            <span class="project-tag">OpenCV</span>
+                            <span class="project-tag">Deep Learning Library</span>
+                            <span class="project-tag">Deep Learning</span>
+                            <span class="project-tag">SQLite</span>
+                        </div>
+                        <p><strong>Impact :</strong> Strengthened expertise in AI model integration and user-centric interface 
+                            design — similar to Riverline’s focus on seamless, AI-driven customer engagement.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+  
+     <section id="resume" class="resume-section">
+    <div class="container">
+        <h2 class="section-title">Professional Resume</h2>
+        <p class="section-subtitle">A summary of my qualifications and experience</p>
+        
+        <div class="resume-highlights">
+            <div class="highlight-card">
+                <div class="highlight-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3>Education</h3>
+                <p>Bachelor's of Technology in <br>Artificial intelligence and Machine Learning<br>SVECW, 2026</p>
+            </div>
+            
+            <div class="highlight-card">
+                <div class="highlight-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3>Skills</h3>
+                <p>Python, C-Programming, Django<br>HTML, CSS, JavaScript, MySQL</p>
+            </div>
+        </div>
+        <div class="highlight-card value-proposition">
+                    <div class="highlight-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Value Proposition</h3>
+                    <ul class="value-list">
+                        <li><strong>Fresh Perspective:</strong> I bring a combination of AI expertise, strong data analytics skills,
+                             and a deep sense of empathy for end-users — exactly what Riverline values in building its AI-driven financial
+                              ecosystem. My experience in creating intelligent systems, paired with my technical fluency in machine learning
+                               and full-stack development, enables me to contribute to Riverline’s mission of redefining debt collection and 
+                               credit assessment through responsible, human-centered AI.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="fresher-message">
+                <div class="message-icon">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <div class="message-content">
+                    <h3>Why Consider a Fresher?</h3>
+                    <p>As a fresher, I bring fresh energy, up-to-date technical knowledge, and the agility to learn and adapt rapidly.</p>
+                    <ul>
+                        <li>I’ve recently worked on cutting-edge AI models and real-time applications that mirror Riverline’s use cases.</li>
+                        <li>I approach every challenge with curiosity, data-driven thinking, and empathy for users.</li>
+                        <li>I have no fixed habits — only a flexible, innovative mindset aligned with fast-moving startup culture.</li>
+                        <li>My foundation in AI, combined with full-stack development and data interpretation skills, makes me ready to
+                             grow and contribute to Riverline’s AI-powered banking vision from day one.</li>
+                    </ul>
+                </div>
+            </div>
+            
+        
+        <div class="resume-download">
+            <div class="resume-preview">
+                <embed src="./assets/Sowj_new (16).pdf" type="application/pdf" width="100%" height="600px" />
+                <div class="preview-overlay">
+                    <a href="./assets/Sowj_new (16).pdf" download class="download-btn">
+                        <i class="fas fa-download"></i> Download Full Resume
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <section id="contact">
+            <h2>Contact Me</h2>
+            <div class="contact-info">
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>babysowjanya2005@gmail.com</p>
+                    <a href="mailto:babysowjanya2005@gmail.com" class="btn">Send Email</a>
+                </div>
+                
+                <div class="contact-card">
+                    <i class="fas fa-globe"></i>
+                    <h3>Online</h3>
+                    <p>Connect with me on professional networks</p>
+                    <div style="display: flex; gap: 0.5rem; justify-content: center;">
+                        <a href="https://github.com/babysowjnaya" target="_blank" class="btn" style="padding: 0.5rem; width: 40px; height: 40px;">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/baby-sowjanya-yerra-a47068374/" target="_blank" class="btn" style="padding: 0.5rem; width: 40px; height: 40px;">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Baby Sowjanya Yerra. All rights reserved.</p>
+            <p>Designed with <i class="fas fa-heart" style="color: var(--accent);"></i> by Baby Sowjanya Yerra</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Animation on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.info-card, .education-item, .skill-category, .project-card, .youtube-card, .contact-card');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if(elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Set initial state for animation
+        document.querySelectorAll('.info-card, .education-item, .skill-category, .project-card, .youtube-card, .contact-card').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        });
+
+        // Add event listener for scroll
+        window.addEventListener('scroll', animateOnScroll);
+        
+        // Trigger once on page load
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
